@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>24点</title>
+</head>
+<style>
+    body {
+        background: #82ddff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        user-select: none;
+        height: 100vh;
+    }
+    .num {
+        background: beige;
+        width: 190px;
+        height: 190px;
+        border-radius: 10px;
+        border: 5px solid #eaead5;
+        text-align: center;
+        line-height: 190px;
+        font-size: 90px;
+        font-weight: 600;
+        color: #d6c6b3;
+        transition: all 0.2s ease;
+    }
+    .num:hover {
+        background: #fdfdbe;
+    }
+    .bod {
+        width: 400px;
+        height: 400px;
+        border-radius: 20px;
+        padding: 20px;
+        background: antiquewhite;
+        border: 5px solid #d6c6b3;
+        display: flex;
+        margin-bottom: 7px;
+    }
+    .maths {
+        width: 400px;
+        height: 100px;
+        border-radius: 20px;
+        padding: 20px;
+        background: antiquewhite;
+        border: 5px solid #d6c6b3;
+        display: flex;
+    }
+    .ms {
+        background: beige;
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        border: 5px solid #eaead5;
+        text-align: center;
+        line-height: 100px;
+        font-size: 50px;
+        font-weight: 600;
+        color: #d6c6b3;
+        transition: all 0.2s cubic-bezier(0, 0.66, 0, 1.64);
+    }
+    .ms:hover {
+        width: 120px;
+    }
+    .ms:active {
+        width: 80px;
+    }
+    .tools {
+        width: 400px;
+        height: 50px;
+        border-radius: 20px;
+        padding: 20px;
+        background: antiquewhite;
+        border: 5px solid #d6c6b3;
+        display: flex;
+        margin-top: 7px;
+    }
+    .tos {
+        background: beige;
+        height: 50px;
+        border-radius: 10px;
+        border: 5px solid #eaead5;
+        text-align: center;
+        line-height: 50px;
+        font-size: 30px;
+        font-weight: 600;
+        color: #d6c6b3;
+        transition: all 0.2s cubic-bezier(0, 0.66, 0, 1.64);
+    }
+    .b:hover {
+        width: 220px;
+    }
+    .b:active {
+        width: 180px;
+    }
+    .pts {
+        width: 50px;
+    }
+    .b {
+        width: 175px;
+    }
+</style>
+<body>
+<div class="bod">
+    <div>
+        <div class="n1 num" onclick="slt_elt('n1')">1</div>
+        <div class="n2 num" onclick="slt_elt('n2')">2</div>
+    </div>
+    <div>
+        <div class="n3 num" onclick="slt_elt('n3')">3</div>
+        <div class="n4 num" onclick="slt_elt('n4')">4</div>
+    </div>
+</div>
+<div class="maths">
+    <div class="add ms" onclick="ms='a'">+</div>
+    <div class="out ms" onclick="ms='b'">-</div>
+    <div class="chg ms" onclick="ms='c'">×</div>
+    <div class="bie ms" onclick="ms='d'">÷</div>
+</div>
+<div class="tools">
+    <div class="pts tos">0</div>
+    <div class="ret tos b" onclick="show()">重来</div>
+    <div class="nxt tos b" onclick="mak_nums()">下一关</div>
+</div>
+</body>
+<script>
+    const n1 = document.querySelector(".n1")
+    const n2 = document.querySelector(".n2")
+    const n3 = document.querySelector(".n3")
+    const n4 = document.querySelector(".n4")
+    const pts = document.querySelector(".pts")
+    let point = 0
+    let slt_a = ""
+    let slt_b = ""
+    let ms = ""
+    let list = []
+    let can_nxt = false
+    mak_nums()
+    function randoms(a,b){return Math.floor(Math.random()*(b-a)+a)}
+    function show(){
+        n1.style.background = ""
+        n2.style.background = ""
+        n3.style.background = ""
+        n4.style.background = ""
+        n1.style.opacity = "1"
+        n2.style.opacity = "1"
+        n3.style.opacity = "1"
+        n4.style.opacity = "1"
+        n1.textContent = list[0]
+        n2.textContent = list[1]
+        n3.textContent = list[2]
+        n4.textContent = list[3]
+        slt_a = ""
+        slt_b = ""
+        ms = ""
+        if (can_nxt){
+            point = point - 1
+            pts.textContent = String(point)
+        }
+        can_nxt = false
+    }
+    function mak_nums(){
+        let num_ok = false
+        list = []
+        can_nxt = false
+        let ts = 0
+        while (!num_ok && ts <= 1000){
+            ts++
+            let a = one_t(24)
+            list.push(a[0])
+            list.push(a[1])
+            for (let i=1;i<=2;i++) {
+                let v = randoms(0, list.length - 1)
+                a = one_t(list[v])
+                list.splice(v, 1)
+                list.push(a[0])
+                list.push(a[1])
+            }
+            let o = true
+            for (let i=0;i<4;i++){
+                if (list[i]>10 || list[i]<1){
+                    o = false
+                }
+            }
+            num_ok = o
+        } for (let i=0;i<4;i++){
+            if (list[i]>10 || list[i]<1){
+                list[i] = randoms(1, 10)
+            }
+        }
+        console.log(list)
+        show()
+    }
+    function one_t(a){
+        let v = randoms(1, 4)
+        let b = randoms(1, 5)
+        let c = 0
+
+        if (v === 1){
+            c = a + b
+        } else if (v === 2){
+            c = a - b
+            if (c < 0){
+                c = 0 - c
+                b = a - c
+            }
+        } else if (v === 3){
+            c = a * b
+        } else {
+            let inb = []
+            for (let i = 1; i <= Math.floor(a / 2)+1; i++){
+                let d = a / i
+                if (Number.isInteger(d)){
+                    inb.push(d, i)
+                }
+            }
+            if (inb.length===0){
+                return one_t(a)
+            }
+            b = inb[randoms(0, inb.length-1)]
+            c = a / b
+        }
+        return [b, c]
+    }
+    function turn(a){
+        if (a === 'n1'){
+            return n1
+        } else if (a === 'n2'){
+            return n2
+        } else if (a === 'n3'){
+            return n3
+        } else if (a === 'n4'){
+            return n4
+        }
+    }
+    function slt_elt(a){
+        if (turn(a).style.opacity==="0"){return}
+        if (slt_a===""){
+            slt_a = turn(a)
+            slt_b = ""
+            slt_a.style.background = "#95958b"
+        } else if (slt_a!==turn(a)){
+            slt_b = turn(a)
+            let b = Number(slt_a.textContent)
+            let c = Number(slt_b.textContent)
+            let d = 0
+            if (ms===""){
+                slt_a.style.background = ""
+                slt_a = ""
+                return;
+            } else if (ms==='a'){
+                d = b + c
+            } else if (ms==='b'){
+                d = b - c
+            } else if (ms==='c'){
+                d = b * c
+            } else if (ms==='d'){
+                d = b / c
+            }
+            slt_b.textContent = String(d)
+            slt_a.textContent = 0
+            slt_a.style.opacity = "0"
+            let e = 0
+            let list = [Number(n1.textContent),
+            Number(n2.textContent),
+            Number(n3.textContent),
+            Number(n4.textContent)]
+            for (let i=0;i<=3;i++){
+                if (e !== 1){
+                    if (list[i]===24 && e!==24){
+                        e = 24
+                    } else if (e !== 0 && e!==24){
+                        e = 1
+                    }
+                }
+            }
+            if (e === 24){
+                slt_b.style.background = "green"
+                point = point + 1
+                pts.textContent = String(point)
+                can_nxt = true
+            }
+            slt_b = ""
+            slt_a = ""
+            ms = ""
+        }
+    }
+</script>
+</html>
