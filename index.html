@@ -94,6 +94,7 @@
         color: darkgreen;
         transition: all 0.2s ease;
         text-align: center;
+        text-shadow: 0 0 4px black;
     }
     .a-s {
         background: beige;
@@ -256,6 +257,16 @@
             slt_a.style.background = "#95958b"
         } else if (slt_a!==turn(a)){
             slt_b = turn(a)
+            if (Number(slt_b.textContent)===0 && ms==="d"){
+                tip.textContent = "0不能做除数哦！"
+                tip.style.color = "darkred"
+                tip.style.opacity = "1"
+                setTimeout(()=>{
+                    tip.style = ""
+                    slt_b = ""
+                }, 1000)
+                return;
+            }
             let b = Number(slt_a.textContent)
             let c = Number(slt_b.textContent)
             let d = 0
@@ -273,24 +284,24 @@
                 d = b / c
             }
             slt_b.textContent = String(d)
-            slt_a.textContent = 0
+            slt_a.textContent = "f"
             slt_a.style.opacity = "0"
-            let list = [Number(n1.textContent),
-            Number(n2.textContent),
-            Number(n3.textContent),
-            Number(n4.textContent)]
-            let v0 = 0
+            let list = [n1.textContent,
+            n2.textContent,
+            n3.textContent,
+            n4.textContent]
+            let f = 0
             let n = 0
             let y = 0
             for (let i of list){
-                if (i === 0){
-                    v0++
-                } else if (i === 24){
+                if (i === "f"){
+                    f++
+                } else if (i === "24"){
                     y++
                 } else {
                     n++
                 }
-            } if (v0 === 3){
+            } if (f === 3){
                 if (y === 1){
                     point++
                     slt_b.style.background = "green"
