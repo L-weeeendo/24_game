@@ -19,7 +19,10 @@
         height: 190px;
         line-height: 190px;
         font-size: 90px;
-        transition: all 0.2s ease;
+        transition: background 0.1s ease,
+        opacity 0.1s ease,
+        top 3s cubic-bezier(1, 1.36, 0.73, 1.15),
+        left 3s cubic-bezier(1, 1.36, 0.73, 1.15);
     }
     .num:hover {
         background: #fdfdbe;
@@ -35,6 +38,7 @@
         display: flex;
         justify-content: center;
         margin-bottom: 7px;
+        flex-wrap: wrap;
     }
     .maths {
         width: 400px;
@@ -87,6 +91,10 @@
         width: 175px;
     }
     .tip {
+        display: none;
+        width: 100%;
+        height: auto;
+        background: #e2ffeb;
         position: absolute;
         opacity: 0;
         bottom: 0;
@@ -94,7 +102,6 @@
         color: darkgreen;
         transition: all 0.2s ease;
         text-align: center;
-        text-shadow: 0 0 4px black;
     }
     .a-s {
         background: beige;
@@ -107,14 +114,10 @@
 </style>
 <body>
 <div class="bod">
-    <div>
-        <div class="n1 num a-s" onclick="slt_elt('n1')">1</div>
-        <div class="n2 num a-s" onclick="slt_elt('n2')">2</div>
-    </div>
-    <div>
-        <div class="n3 num a-s" onclick="slt_elt('n3')">3</div>
-        <div class="n4 num a-s" onclick="slt_elt('n4')">4</div>
-    </div>
+    <div class="n1 num a-s" onclick="slt_elt('n1')">1</div>
+    <div class="n2 num a-s" onclick="slt_elt('n2')">2</div>
+    <div class="n3 num a-s" onclick="slt_elt('n3')">3</div>
+    <div class="n4 num a-s" onclick="slt_elt('n4')">4</div>
     <p class="tip"></p>
 </div>
 <div class="maths">
@@ -145,10 +148,9 @@
     mak_nums()
     function randoms(a,b){return Math.floor(Math.random()*(b-a)+a)}
     function show(){
-        n1.style = ""
-        n2.style = ""
-        n3.style = ""
-        n4.style = ""
+        [n1,n2,n3,n4].forEach(e => {
+            e.style = ""
+        })
         n1.textContent = list[0]
         n2.textContent = list[1]
         n3.textContent = list[2]
@@ -253,11 +255,12 @@
         if (slt_a===""){
             slt_a = turn(a)
             slt_b = ""
-            slt_a.style.background = "#95958b"
+            slt_a.style.background = "#43bcb0"
         } else if (slt_a!==turn(a)){
             slt_b = turn(a)
             if (Number(slt_b.textContent)===0 && ms==="d"){
-                tip.textContent = "0不能做除数哦！"
+                tip.textContent = "0不能做除数哦"
+                tip.style.display = "block"
                 tip.style.color = "darkred"
                 tip.style.opacity = "1"
                 setTimeout(()=>{
@@ -283,7 +286,7 @@
                 d = b / c
             }
             slt_b.textContent = String(d)
-            slt_a.textContent = "f"
+            slt_a.textContent = ""
             slt_a.style.opacity = "0"
             let list = [n1.textContent,
             n2.textContent,
@@ -293,7 +296,7 @@
             let n = 0
             let y = 0
             for (let i of list){
-                if (i === "f"){
+                if (i === ""){
                     f++
                 } else if (i === "24"){
                     y++
@@ -301,14 +304,20 @@
                     n++
                 }
             } if (f === 3){
+                slt_b.style.position = "absolute"
+                slt_b.style.top = "50%"
+                slt_b.style.left = "50%"
+                slt_b.style.transform = "translate(-50%, -50%)"
+                slt_b.style.margin = "0"
+                tip.style.display = "block"
                 if (y === 1){
                     slt_b.style.background = "green"
                     pts.textContent = String(++point)
-                    tip.textContent = "恭喜！"
+                    tip.textContent = "恭喜"
                     can_nxt = true
                 } else if (n === 1){
                     slt_b.style.background = "red"
-                    tip.textContent = "要等于24哦！"
+                    tip.textContent = "要等于24哦"
                     tip.style.color = "darkred"
                 }
                 tip.style.opacity = "1"
