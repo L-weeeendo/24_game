@@ -14,6 +14,9 @@
         flex-direction: column;
         user-select: none;
         height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
     }
     .num {
         width: 190px;
@@ -112,8 +115,37 @@
         color: #aca08d;
         text-align: center;
     }
+    .logo {
+        background-image: url("./logo.svg");
+        height: 15px;
+        width: 15px;
+        border-radius: 2px;
+        background-size: cover;
+    }
+    .inf {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        font-size: 15px;
+        margin: 0;
+    }
+    .infontop {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        height: 15px;
+        width: 100%;
+        background: #e2ffeb;
+    }
 </style>
 <body>
+<div class="infontop">
+    <div class="logo"></div>
+    <div class="inf">用加减乘除算出<strong>24</strong></div>
+</div>
 <div class="bod">
     <div class="n1 num a-s" onclick="slt_elt('n1')">1</div>
     <div class="n2 num a-s" onclick="slt_elt('n2')">2</div>
