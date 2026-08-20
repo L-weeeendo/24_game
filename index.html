@@ -189,7 +189,7 @@
     let list = []
     let can_nxt = false
     mak_nums()
-    function randoms(a,b){return Math.floor(Math.random()*(b-a)+a)}
+    function randoms(a,b){return Math.floor(Math.random()*(b-a+1)+a)}
     function show(){
         [n1,n2,n3,n4].forEach(e => {
             e.style = ""
@@ -210,7 +210,7 @@
     function mak_nums(){
         list = []
         for(let i=0;i<4;i++){
-            list.push(randoms(1,10))
+            list.push(randoms(1,13))
         }
         while (!find_end()){
             list = []
