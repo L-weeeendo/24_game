@@ -83,16 +83,16 @@
         transition: all 0.2s cubic-bezier(0, 0.66, 0, 1.64);
     }
     .b:hover {
-        width: 220px;
+        width: 130px;
     }
     .b:active {
-        width: 180px;
+        width: 100px;
     }
     .pts {
-        width: 50px;
+        width: 49px;
     }
     .b {
-        width: 175px;
+        width: 117px;
     }
     .tip {
         display: none;
@@ -163,6 +163,7 @@
     <div class="pts tos a-s">0</div>
     <div class="ret tos b a-s" onclick="show()">重来</div>
     <div class="nxt tos b a-s" onclick="mak_nums()">下一关</div>
+    <div class="jie tos b a-s">解法</div>
 </div>
 </body>
 <script>
@@ -188,6 +189,7 @@
     let ms = ""
     let list = []
     let can_nxt = false
+    let jiefa = ""
     mak_nums()
     function randoms(a,b){return Math.floor(Math.random()*(b-a+1)+a)}
     function show(){
@@ -252,7 +254,8 @@
                                     if (!a3){continue}
                                     if (a3 === 24){
                                         console.log(true)
-                                        console.log(`${s3}=24`);
+                                        console.log(`${s3}=24`)
+                                        jiefa = `${s3}=24`
                                         return true
                                     }
                                 }
@@ -370,6 +373,15 @@
             slt_a = ""
             ms = ""
         }
+    }
+    function show_jie(){
+        tip.textContent = jiefa
+        tip.style.color = "black"
+        tip.style.display = "block"
+        tip.style.opacity = "1"
+        setTimeout(() => {
+            tip.style = ""
+        },1000)
     }
 </script>
 </html>
