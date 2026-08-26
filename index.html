@@ -222,8 +222,10 @@
         show()
     }
     function find_end(){
+        let jiefa = ""
         for (let i of list){
             let a = i
+            jiefa = 1
             let v1 = delany(list,i)
             for (let i1 of v1){
                 let v2 = delany(v1,i1)
@@ -241,6 +243,7 @@
                                     if (!a3){continue}
                                     if (a3 === 24){
                                         console.log(true)
+                                        console.log(jiefa)
                                         return true
                                     }
                                 }
@@ -259,15 +262,19 @@
         }
         if (m === 1){
             console.log(w + x)
+            jiefa = `(${jiefa})+${x}`
             return w + x
         } else if (m === 2){
             console.log(w - x)
+            jiefa = `(${jiefa})-${x}`
             return w - x
         } else if (m === 3){
             console.log(w * x)
+            jiefa = `(${jiefa})*${x}`
             return m * x
         } else if (m === 4){
             console.log(w / x)
+            jiefa = `(${jiefa})/${x}`
             return m / x
         }
     }
