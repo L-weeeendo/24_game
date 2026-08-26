@@ -188,7 +188,6 @@
     let ms = ""
     let list = []
     let can_nxt = false
-    let jiefa = ""
     mak_nums()
     function randoms(a,b){return Math.floor(Math.random()*(b-a+1)+a)}
     function show(){
@@ -222,28 +221,38 @@
         can_nxt = false
         show()
     }
+    function mak_mth(n){
+        ma = {
+            1: "+",
+            2: "-",
+            3: "*",
+            4: "/"
+        }
+        return ma[n]
+    }
     function find_end(){
         for (let i of list){
-            let a = i
-            jiefa = i
             let v1 = delany(list,i)
             for (let i1 of v1){
                 let v2 = delany(v1,i1)
                 for (let m1 of [1,2,3,4]){
-                    let a1 = mths(a,i1,m1)
+                    let a1 = mths(i,i1,m1)
+                    let s = `${i}${mak_mth(m1)}${i1}`
                     if (!a1){continue}
                     for (let i2 of v2){
                         let v3 = delany(v2,i2)
                         for (let m2 of [1,2,3,4]){
                             let a2 = mths(a1,i2,m2)
+                            let s2 = `(${s})${mak_mth(m2)}${i2}`
                             if (!a2){continue}
                             for (let i3 of v3){
                                 for (let m3 of [1,2,3,4]){
                                     let a3 = mths(a2,i3,m3)
+                                    let s3 = `(${s2})${mak_mth(m3)}${i3}`
                                     if (!a3){continue}
                                     if (a3 === 24){
                                         console.log(true)
-                                        console.log(jiefa)
+                                        console.log(`${s3}=24`);
                                         return true
                                     }
                                 }
@@ -262,19 +271,15 @@
         }
         if (m === 1){
             console.log(w + x)
-            jiefa = `(${jiefa})+${x}`
             return w + x
         } else if (m === 2){
             console.log(w - x)
-            jiefa = `(${jiefa})-${x}`
             return w - x
         } else if (m === 3){
             console.log(w * x)
-            jiefa = `(${jiefa})*${x}`
             return m * x
         } else if (m === 4){
             console.log(w / x)
-            jiefa = `(${jiefa})/${x}`
             return m / x
         }
     }
