@@ -215,7 +215,7 @@
         while (!find_end()){
             list = []
             for(let i=0;i<4;i++){
-                list.push(randoms(1,10))
+                list.push(randoms(1,13))
             }
         }
         can_nxt = false
@@ -228,18 +228,18 @@
             for (let i1 of v1){
                 let v2 = delany(v1,i1)
                 for (let m1 of [1,2,3,4]){
-                    a = mths(a,i1,m1)
-                    if (!a){continue}
+                    let a1 = mths(a,i1,m1)
+                    if (!a1){continue}
                     for (let i2 of v2){
                         let v3 = delany(v2,i2)
                         for (let m2 of [1,2,3,4]){
-                            a = mths(a,i2,m2)
-                            if (!a){continue}
+                            let a2 = mths(a,i2,m2)
+                            if (!a2){continue}
                             for (let i3 of v3){
                                 for (let m3 of [1,2,3,4]){
-                                    a = mths(a,i3,m3)
-                                    if (!a){continue}
-                                    if (a === 24){
+                                    let a3 = mths(a,i3,m3)
+                                    if (!a3){continue}
+                                    if (a3 === 24){
                                         console.log(true)
                                         return true
                                     }
