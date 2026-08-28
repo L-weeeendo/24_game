@@ -104,9 +104,8 @@
         bottom: 0;
         font-size: 40px;
         color: darkgreen;
-        transition: all 0.2s ease;
+        transition: all 0.2s;
         text-align: center;
-        transition: opacity 0.3s;
     }
     .a-s {
         background: beige;
@@ -225,7 +224,7 @@
         show()
     }
     function mak_mth(n){
-        ma = {
+        let ma = {
             1: "+",
             2: "-",
             3: "*",
@@ -259,6 +258,17 @@
                                         jiefa = `${s3}=24`
                                         return true
                                     }
+                                    a3 = mths(i2,i3,m3)
+                                    s3 = `${i2}${mak_mth(m3)}${i3}`
+                                    let a4 = mths(a1,a3,m2)
+                                    let s4 = `(${s})${mak_mth(m2)}(${s3})`
+                                    if (!a4){continue}
+                                    if (a4 === 24){
+                                        console.log(true)
+                                        console.log(`${s4}=24`)
+                                        jiefa = `${s4}=24`
+                                        return true
+                                    }
                                 }
                             }
                         }
@@ -274,16 +284,12 @@
             return false
         }
         if (m === 1){
-            console.log(w + x)
             return w + x
         } else if (m === 2){
-            console.log(w - x)
             return w - x
         } else if (m === 3){
-            console.log(w * x)
             return w * x
         } else if (m === 4){
-            console.log(w / x)
             return w / x
         }
     }
