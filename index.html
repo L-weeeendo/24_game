@@ -190,6 +190,7 @@
     let list = []
     let can_nxt = false
     let jiefa = ""
+    let o_f = [1,2,3,4]
     mak_nums()
     function randoms(a,b){return Math.floor(Math.random()*(b-a+1)+a)}
     function show(){
@@ -214,7 +215,7 @@
         for(let i=0;i<4;i++){
             list.push(randoms(1,13))
         }
-        while (!find_end()){
+        while (!find_end(list)){
             list = []
             for(let i=0;i<4;i++){
                 list.push(randoms(1,13))
@@ -232,41 +233,51 @@
         }
         return ma[n]
     }
-    function find_end(){
-        for (let i of list){
-            let v1 = delany(list,i)
-            for (let i1 of v1){
-                let v2 = delany(v1,i1)
-                for (let m1 of [1,2,3,4]){
-                    let a1 = mths(i,i1,m1)
-                    let s = `${i}${mak_mth(m1)}${i1}`
-                    if (!a1){continue}
-                    for (let i2 of v2){
-                        let v3 = delany(v2,i2)
-                        for (let m2 of [1,2,3,4]){
-                            let a2 = mths(a1,i2,m2)
-                            let s2 = `(${s})${mak_mth(m2)}${i2}`
-                            if (!a2){continue}
-                            for (let i3 of v3){
-                                for (let m3 of [1,2,3,4]){
-                                    let a3 = mths(a2,i3,m3)
-                                    let s3 = `(${s2})${mak_mth(m3)}${i3}`
-                                    if (!a3){continue}
+    function find_end(l){
+        for (let i1 of l){
+            let l2 = delany(l,i1)
+            for (let i2 of l2){
+                let l3 = delany(l2,i2)
+                for (let m1 of o_f){
+                    for (let i3 of l3){
+                        let l4 = delany(l3,i3)
+                        for (let m2 of o_f){
+                            for (let i4 of l4){
+                                for (let m3 of o_f){
+                                    let a1 = mths(i1,i2,m1)
+                                    let a2 = mths(a1,i3,m2)
+                                    let a3 = mths(a2,i4,m3)
+                                    jiefa = `((${i1}${mak_mth(m1)}${i2})${mak_mth(m2)}${i3})${mak_mth(m3)}${i4}`
                                     if (a3 === 24){
-                                        console.log(true)
-                                        console.log(`${s3}=24`)
-                                        jiefa = `${s3}=24`
+                                        console.log(jiefa)
                                         return true
                                     }
-                                    a3 = mths(i2,i3,m3)
-                                    s3 = `${i2}${mak_mth(m3)}${i3}`
-                                    let a4 = mths(a1,a3,m2)
-                                    let s4 = `(${s})${mak_mth(m2)}(${s3})`
-                                    if (!a4){continue}
-                                    if (a4 === 24){
-                                        console.log(true)
-                                        console.log(`${s4}=24`)
-                                        jiefa = `${s4}=24`
+                                    a2 = mths(i3,a1,m2)
+                                    a3 = mths(a2,i4,m3)
+                                    jiefa = `(${i3}${mak_mth(m2)}(${i1}${mak_mth(m1)}${i2}))${mak_mth(m3)}${i4}`
+                                    if (a3 === 24){
+                                        console.log(jiefa)
+                                        return true
+                                    }
+                                    a2 = mths(a1,i3,m2)
+                                    a3 = mths(i4,a2,m3)
+                                    jiefa = `${i4}${mak_mth(m3)}((${i1}${mak_mth(m1)}${i2})${mak_mth(m2)}${i3})`
+                                    if (a3 === 24){
+                                        console.log(jiefa)
+                                        return true
+                                    }
+                                    a2 = mths(i3,a1,m2)
+                                    a3 = mths(i4,a2,m3)
+                                    jiefa = `${i4}${mak_mth(m3)}(${i3}${mak_mth(m2)}(${i1}${mak_mth(m1)}${i2}))`
+                                    if (a3 === 24){
+                                        console.log(jiefa)
+                                        return true
+                                    }
+                                    a2 = mths(i3,i4,m2)
+                                    a3 = mths(a1,a2,m3)
+                                    jiefa = `(${i1}${mak_mth(m1)}${i2})${mak_mth(m3)}(${i3}${mak_mth(m2)}${i4})`
+                                    if (a3 === 24){
+                                        console.log(jiefa)
                                         return true
                                     }
                                 }
@@ -276,7 +287,6 @@
                 }
             }
         }
-        console.log(false)
         return false
     }
     function mths(w,x,m){
