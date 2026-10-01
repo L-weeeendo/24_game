@@ -1,0 +1,134 @@
+body {
+    background: #82ddff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    user-select: none;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+.num {
+    width: 190px;
+    height: 190px;
+    line-height: 190px;
+    font-size: 90px;
+    transition: background 0.1s ease,
+    opacity 0.1s ease,
+    top 3s cubic-bezier(1, 1.36, 0.73, 1.15),
+    left 3s cubic-bezier(1, 1.36, 0.73, 1.15);
+}
+.num:hover {
+    background: #fdfdbe;
+}
+.bod {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+    padding: 20px;
+    background: antiquewhite;
+    border: 5px solid #d6c6b3;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7px;
+    flex-wrap: wrap;
+}
+.maths {
+    width: 400px;
+    height: 100px;
+    border-radius: 20px;
+    padding: 20px;
+    background: antiquewhite;
+    border: 5px solid #d6c6b3;
+    display: flex;
+}
+.ms {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 50px;
+    transition: all 0.2s cubic-bezier(0, 0.66, 0, 1.64);
+}
+.ms:hover {
+    width: 120px;
+}
+.ms:active {
+    width: 80px;
+}
+.tools {
+    width: 400px;
+    height: 50px;
+    border-radius: 20px;
+    padding: 20px;
+    background: antiquewhite;
+    border: 5px solid #d6c6b3;
+    display: flex;
+    margin-top: 7px;
+}
+.tos {
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    transition: all 0.2s cubic-bezier(0, 0.66, 0, 1.64);
+}
+.b:hover {
+    width: 130px;
+}
+.b:active {
+    width: 100px;
+}
+.pts {
+    width: 49px;
+}
+.b {
+    width: 117px;
+}
+.tip {
+    display: none;
+    width: 100%;
+    height: auto;
+    background: #e2ffeb;
+    position: absolute;
+    opacity: 0;
+    bottom: 0;
+    font-size: 40px;
+    color: darkgreen;
+    transition: all 0.2s;
+    text-align: center;
+}
+.a-s {
+    background: beige;
+    border-radius: 10px;
+    border: 5px solid #d1d1bb;
+    font-weight: 600;
+    color: #aca08d;
+    text-align: center;
+}
+.logo {
+    background-image: url("./logo.svg");
+    height: 15px;
+    width: 15px;
+    border-radius: 2px;
+    background-size: cover;
+}
+.inf {
+    position: absolute;
+    top: 0;
+    left: 16px;
+    font-size: 15px;
+    margin: 0;
+}
+.infontop {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    height: 15px;
+    width: 100%;
+    background: #e2ffeb;
+}
