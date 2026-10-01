@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <title>24点</title>
     <link rel="icon" href="./logo.svg">
+    <link rel="stylesheet" href="colors.css">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-<div class="infontop">
-    <div class="logo"></div>
-    <div class="inf">用加减乘除算出<strong>24</strong></div>
-</div>
 <div class="bod">
     <div class="n1 num a-s" onclick="slt_elt('n1')">1</div>
     <div class="n2 num a-s" onclick="slt_elt('n2')">2</div>
@@ -19,10 +16,10 @@
     <p class="tip"></p>
 </div>
 <div class="maths">
-    <div class="add ms a-s" onclick="ms='a'">+</div>
-    <div class="out ms a-s" onclick="ms='b'">-</div>
-    <div class="chg ms a-s" onclick="ms='c'">×</div>
-    <div class="bie ms a-s" onclick="ms='d'">÷</div>
+    <div class="add ms a-s" onclick="ms_f('a')">+</div>
+    <div class="out ms a-s" onclick="ms_f('b')">-</div>
+    <div class="chg ms a-s" onclick="ms_f('c')">×</div>
+    <div class="bie ms a-s" onclick="ms_f('d')">÷</div>
 </div>
 <div class="tools">
     <div class="pts tos a-s">0</div>

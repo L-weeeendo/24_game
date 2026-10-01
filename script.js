@@ -4,6 +4,10 @@ const n3 = document.querySelector(".n3")
 const n4 = document.querySelector(".n4")
 const pts = document.querySelector(".pts")
 const tip = document.querySelector(".tip")
+const add = document.querySelector(".add")
+const out = document.querySelector(".out")
+const chg = document.querySelector(".chg")
+const bie = document.querySelector(".bie")
 const delany = (l,n) => {
     return l.filter(i => {
         let r = true
@@ -22,6 +26,7 @@ let list = []
 let can_nxt = false
 let jiefa = ""
 let o_f = [1,2,3,4]
+let ms_L = ['a','b','c','d']
 mak_nums()
 function randoms(a,b){return Math.floor(Math.random()*(b-a+1)+a)}
 function show(){
@@ -134,6 +139,33 @@ function mths(w,x,m){
         return w / x
     }
 }
+function turn_ms(a) {
+    let dic = {
+        'a': add,
+        'b': out,
+        'c': chg,
+        'd': bie
+    }
+    return dic[a]
+}
+function ms_f(a) {
+    if (slt_a !== ""){
+        ms = a
+        for (let i of ms_L){
+            if (i === ms){
+                turn_ms(i).style.background = "#58d8f3"
+            } else {
+                turn_ms(i).style = ""
+            }
+        }
+    }
+}
+function ms_clear() {
+    ms = ""
+    ms_L.forEach(i => {
+        turn_ms(i).style = ""
+    })
+}
 function turn(a){
     if (a === 'n1'){
         return n1
@@ -151,6 +183,7 @@ function slt_elt(a){
         slt_a = turn(a)
         slt_b = ""
         slt_a.style.background = "#78d3c2"
+        ms = ""
     } else if (slt_a!==turn(a)){
         slt_b = turn(a)
         if (Number(slt_b.textContent)===0 && ms==="d"){
@@ -219,7 +252,7 @@ function slt_elt(a){
         }
         slt_b = ""
         slt_a = ""
-        ms = ""
+        ms_clear()
     }
 }
 function show_jie(){
